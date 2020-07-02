@@ -1,12 +1,11 @@
-package com.example.shoppinglist.data.db
+package com.androiddevs.grocerylist.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.shoppinglist.data.db.entities.ShoppingItem
-
+import com.androiddevs.grocerylist.data.db.entities.ShoppingItem
 
 @Dao
-interface ShoppingDAO {
+interface ShoppingDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(item: ShoppingItem)

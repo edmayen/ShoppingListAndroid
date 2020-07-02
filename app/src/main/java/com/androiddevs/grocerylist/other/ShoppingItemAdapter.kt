@@ -1,12 +1,12 @@
-package com.example.shoppinglist.other
+package com.androiddevs.grocerylist.other
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.shoppinglist.R
-import com.example.shoppinglist.data.db.entities.ShoppingItem
-import com.example.shoppinglist.ui.shoppinglist.ShoppingViewModel
+import com.androiddevs.grocerylist.R
+import com.androiddevs.grocerylist.data.db.entities.ShoppingItem
+import com.androiddevs.grocerylist.ui.shoppinglist.ShoppingViewModel
 import kotlinx.android.synthetic.main.shopping_item.view.*
 
 class ShoppingItemAdapter(
@@ -24,22 +24,24 @@ class ShoppingItemAdapter(
     }
 
     override fun onBindViewHolder(holder: ShoppingViewHolder, position: Int) {
-        val currentShoppingItem = items[position]
+        val curShoppingItem = items[position]
 
-        holder.itemView.tvName.text = currentShoppingItem.name
-        holder.itemView.tvAmount.text = "${currentShoppingItem.amount}"
+        holder.itemView.tvName.text = curShoppingItem.name
+        holder.itemView.tvAmount.text = "${curShoppingItem.amount}"
 
         holder.itemView.ivDelete.setOnClickListener {
-            viewModel.delete(currentShoppingItem)
+            viewModel.delete(curShoppingItem)
         }
+
         holder.itemView.ivPlus.setOnClickListener {
-            currentShoppingItem.amount++
-            viewModel.upsert(currentShoppingItem)
+            curShoppingItem.amount++
+            viewModel.upsert(curShoppingItem)
         }
+
         holder.itemView.ivMinus.setOnClickListener {
-            if(currentShoppingItem.amount > 0){
-                currentShoppingItem.amount--
-                viewModel.upsert(currentShoppingItem)
+            if(curShoppingItem.amount > 0) {
+                curShoppingItem.amount--
+                viewModel.upsert(curShoppingItem)
             }
         }
     }
